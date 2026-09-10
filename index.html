@@ -1411,6 +1411,431 @@
       </style>
     </section>
 
+    <section data-tela="player-da-musica" class="hidden">
+      <div class="px-4 pb-6 pt-2 max-w-[430px] mx-auto">
+        <div class="mb-5">
+          <div class="relative w-64 h-64 mx-auto rounded-2xl overflow-hidden shadow-2xl shadow-black/30 group">
+            <div id="player-capa" class="w-full h-full bg-gradient-to-br from-marca-600 via-amber-500 to-orange-600 flex items-center justify-center relative">
+              <svg class="w-24 h-24 text-white/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                <button onclick="player_da_musica_trocar_capa()" class="opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-sm rounded-full p-3">
+                  <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="absolute bottom-3 right-3 bg-black/40 backdrop-blur-sm rounded-lg px-2 py-0.5">
+              <span class="text-[10px] text-white/80 font-medium">🎵 Gerada por IA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mb-6">
+          <div class="flex items-center justify-center gap-2 mb-1">
+            <h1 id="player-titulo" class="font-display text-xl font-bold text-gray-900 truncate max-w-[240px]" contenteditable="false">Sol nas Montanhas</h1>
+            <button onclick="player_da_musica_editar_titulo()" class="text-gray-400 hover:text-marca-600 transition-colors p-1 shrink-0">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </button>
+          </div>
+          <p id="player-artista-edit" class="text-sm text-gray-500">por Ana Beatriz</p>
+          <div class="flex items-center justify-center gap-3 mt-2">
+            <span class="badge badge-marca">Pop</span>
+            <span class="badge badge-outline">3:42</span>
+            <span class="badge badge-outline">120 BPM</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 mb-4">
+          <div class="flex items-center justify-between mb-3">
+            <span id="player-tempo-atual" class="text-xs text-gray-500 font-mono w-10">0:00</span>
+            <input id="player-progresso" type="range" min="0" max="100" value="0" class="flex-1 mx-3 h-1.5 bg-gray-200 rounded-full appearance-none cursor-pointer accent-marca-600" oninput="player_da_musica_seek(this.value)">
+            <span id="player-tempo-total" class="text-xs text-gray-500 font-mono w-10 text-right">3:42</span>
+          </div>
+          <div class="flex items-center justify-center gap-6">
+            <button onclick="player_da_musica_voltar()" class="text-gray-500 hover:text-gray-700 transition-colors p-2 active:scale-90 transition-transform">
+              <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+            </button>
+            <button id="player-btn-play" onclick="player_da_musica_toggle_play()" class="bg-marca-600 hover:bg-marca-700 text-white rounded-full p-5 shadow-lg shadow-marca-600/30 active:scale-90 transition-all">
+              <svg id="player-icon-play" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <svg id="player-icon-pause" class="w-8 h-8 hidden" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </button>
+            <button onclick="player_da_musica_avancar()" class="text-gray-500 hover:text-gray-700 transition-colors p-2 active:scale-90 transition-transform">
+              <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+            </button>
+          </div>
+          <div class="flex items-center justify-center gap-2 mt-4">
+            <svg class="w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 010 7.07"/></svg>
+            <input type="range" min="0" max="100" value="75" class="w-32 h-1 bg-gray-200 rounded-full appearance-none cursor-pointer accent-marca-600">
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 mb-4">
+          <h3 class="font-display font-bold text-gray-900 text-sm mb-3">Visualizador</h3>
+          <div id="player-visualizador" class="flex items-end justify-center gap-1 h-16">
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 mb-4">
+          <h3 class="font-display font-bold text-gray-900 text-sm mb-3">Baixar Música</h3>
+          <div class="grid grid-cols-2 gap-3">
+            <button onclick="player_da_musica_download('mp3')" class="flex items-center gap-3 bg-gray-50 hover:bg-gray-100 active:scale-95 transition-all rounded-xl p-3 border border-gray-100">
+              <div class="w-10 h-10 rounded-lg bg-red-500 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+              <div>
+                <span class="text-sm font-semibold text-gray-900 block">MP3</span>
+                <span class="text-[10px] text-gray-500">4.2 MB</span>
+              </div>
+            </button>
+            <button onclick="player_da_musica_download('wav')" class="flex items-center gap-3 bg-gray-50 hover:bg-gray-100 active:scale-95 transition-all rounded-xl p-3 border border-gray-100">
+              <div class="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+              <div>
+                <span class="text-sm font-semibold text-gray-900 block">WAV</span>
+                <span class="text-[10px] text-gray-500">32.1 MB</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 mb-4">
+          <h3 class="font-display font-bold text-gray-900 text-sm mb-3">Compartilhar</h3>
+          <div class="grid grid-cols-4 gap-3">
+            <button onclick="player_da_musica_compartilhar('whatsapp')" class="flex flex-col items-center gap-1.5 py-2 px-1 rounded-xl hover:bg-green-50 active:scale-90 transition-all">
+              <div class="w-11 h-11 rounded-full bg-green-500 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <span class="text-[10px] text-gray-600 font-medium">WhatsApp</span>
+            </button>
+            <button onclick="player_da_musica_compartilhar('instagram')" class="flex flex-col items-center gap-1.5 py-2 px-1 rounded-xl hover:bg-pink-50 active:scale-90 transition-all">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+              </div>
+              <span class="text-[10px] text-gray-600 font-medium">Instagram</span>
+            </button>
+            <button onclick="player_da_musica_compartilhar('stories')" class="flex flex-col items-center gap-1.5 py-2 px-1 rounded-xl hover:bg-pink-50 active:scale-90 transition-all">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-pink-500 to-orange-400 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <span class="text-[10px] text-gray-600 font-medium">Stories</span>
+            </button>
+            <button onclick="player_da_musica_copiar_link()" class="flex flex-col items-center gap-1.5 py-2 px-1 rounded-xl hover:bg-marca-50 active:scale-90 transition-all">
+              <div class="w-11 h-11 rounded-full bg-marca-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-marca-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+              </div>
+              <span class="text-[10px] text-gray-600 font-medium">Copiar Link</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 mb-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-display font-bold text-gray-900 text-sm">Detalhes da Música</h3>
+            <button onclick="mostrarTela('configurar-geracao')" class="text-xs text-marca-600 font-medium hover:underline">Editar</button>
+          </div>
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-gray-500">Letra / Prompt</span>
+              <span class="text-gray-900 font-medium truncate max-w-[180px] text-right">"Nas montanhas, o sol nasce..."</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-gray-500">Estilo</span>
+              <span class="text-gray-900 font-medium">Pop Acústico</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-gray-500">Idioma</span>
+              <span class="text-gray-900 font-medium">Português</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-gray-500">Voz</span>
+              <span class="text-gray-900 font-medium">Feminina, suave</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-gray-500">Gerado em</span>
+              <span class="text-gray-900 font-medium">14 de jan, 2025</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-gray-500">Créditos usados</span>
+              <span class="text-marca-600 font-semibold">15 créditos</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 mb-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-display font-bold text-gray-900 text-sm">Curtidas e Comentários</h3>
+            <span class="badge badge-marca" id="player-curtidas-count">247</span>
+          </div>
+          <div class="flex items-center gap-4 mb-4">
+            <button id="player-btn-curtir" onclick="player_da_musica_curtir()" class="flex items-center gap-1.5 text-gray-500 hover:text-red-500 transition-colors active:scale-90 transition-transform">
+              <svg id="player-icon-coracao" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              <span id="player-texto-curtir" class="text-sm font-medium">Curtir</span>
+            </button>
+            <button onclick="player_da_musica_abrir_comentarios()" class="flex items-center gap-1.5 text-gray-500 hover:text-marca-600 transition-colors">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              <span class="text-sm font-medium">18</span>
+            </button>
+          </div>
+          <div class="space-y-3" id="player-comentarios-lista">
+            <div class="flex gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shrink-0">
+                <span class="text-[11px] font-bold text-white">RL</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-semibold text-gray-900">Rafael Lima</span>
+                  <span class="text-[10px] text-gray-400">há 2h</span>
+                </div>
+                <p class="text-xs text-gray-600 mt-0.5">Incrível! A voz ficou perfeita 👏🎶</p>
+              </div>
+            </div>
+            <div class="flex gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-rose-600 flex items-center justify-center shrink-0">
+                <span class="text-[11px] font-bold text-white">MC</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-semibold text-gray-900">Marina Costa</span>
+                  <span class="text-[10px] text-gray-400">há 5h</span>
+                </div>
+                <p class="text-xs text-gray-600 mt-0.5">Uau, que qualidade! Vou usar para o vídeo do Instagram ✨</p>
+              </div>
+            </div>
+            <div class="flex gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-600 flex items-center justify-center shrink-0">
+                <span class="text-[11px] font-bold text-white">PT</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-semibold text-gray-900">Pedro Torres</span>
+                  <span class="text-[10px] text-gray-400">há 1d</span>
+                </div>
+                <p class="text-xs text-gray-600 mt-0.5">Muito boa! O ritmo está perfeito 🔥</p>
+              </div>
+            </div>
+          </div>
+          <button onclick="player_da_musica_abrir_comentarios()" class="w-full text-center text-xs text-marca-600 font-medium mt-3 py-1.5 hover:bg-marca-50 rounded-lg transition-colors">Ver todos os comentários</button>
+        </div>
+
+        <button onclick="mostrarTela('biblioteca-de-musicas')" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl py-3.5 active:scale-95 transition-all text-sm flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+          Voltar para Biblioteca
+        </button>
+      </div>
+
+      <script>
+        (function() {
+          var playing = false;
+          var progressInterval = null;
+          var currentProgress = 0;
+          var liked = false;
+
+          function initVisualizer() {
+            var container = document.getElementById('player-visualizador');
+            if (!container) return;
+            var bars = 40;
+            var html = '';
+            for (var i = 0; i < bars; i++) {
+              html += '<div class="wave-bar w-1.5 bg-marca-500 rounded-full transition-all duration-150" style="height:8px;"></div>';
+            }
+            container.innerHTML = html;
+          }
+
+          function animateBars() {
+            var bars = document.querySelectorAll('#player-visualizador .wave-bar');
+            bars.forEach(function(bar) {
+              var h = Math.max(6, Math.random() * 56);
+              bar.style.height = h + 'px';
+              var opacity = 0.4 + Math.random() * 0.6;
+              bar.style.opacity = opacity;
+              var colorIdx = Math.floor(Math.random() * 3);
+              if (colorIdx === 0) bar.className = 'wave-bar w-1.5 bg-marca-500 rounded-full transition-all duration-150';
+              else if (colorIdx === 1) bar.className = 'wave-bar w-1.5 bg-amber-400 rounded-full transition-all duration-150';
+              else bar.className = 'wave-bar w-1.5 bg-orange-400 rounded-full transition-all duration-150';
+            });
+          }
+
+          function stopBars() {
+            var bars = document.querySelectorAll('#player-visualizador .wave-bar');
+            bars.forEach(function(bar) {
+              bar.style.height = '6px';
+              bar.style.opacity = '0.3';
+              bar.className = 'wave-bar w-1.5 bg-gray-300 rounded-full transition-all duration-150';
+            });
+          }
+
+          window.player_da_musica_toggle_play = function() {
+            playing = !playing;
+            var iconPlay = document.getElementById('player-icon-play');
+            var iconPause = document.getElementById('player-icon-pause');
+            if (playing) {
+              iconPlay.classList.add('hidden');
+              iconPause.classList.remove('hidden');
+              initVisualizer();
+              var animInterval = setInterval(function() {
+                if (!playing) { clearInterval(animInterval); return; }
+                animateBars();
+              }, 180);
+              window._playerAnimInterval = animInterval;
+              progressInterval = setInterval(function() {
+                currentProgress += 0.45;
+                if (currentProgress > 100) { currentProgress = 0; }
+                var input = document.getElementById('player-progresso');
+                if (input) input.value = currentProgress;
+                updateTimeDisplay(currentProgress);
+              }, 300);
+            } else {
+              iconPlay.classList.remove('hidden');
+              iconPause.classList.add('hidden');
+              stopBars();
+              if (window._playerAnimInterval) clearInterval(window._playerAnimInterval);
+              if (progressInterval) clearInterval(progressInterval);
+            }
+          };
+
+          function updateTimeDisplay(progress) {
+            var totalSec = 222;
+            var currentSec = Math.floor((progress / 100) * totalSec);
+            var min = Math.floor(currentSec / 60);
+            var sec = currentSec % 60;
+            var el = document.getElementById('player-tempo-atual');
+            if (el) el.textContent = min + ':' + (sec < 10 ? '0' : '') + sec;
+          }
+
+          window.player_da_musica_seek = function(val) {
+            currentProgress = parseFloat(val);
+            updateTimeDisplay(currentProgress);
+          };
+
+          window.player_da_musica_voltar = function() {
+            currentProgress = Math.max(0, currentProgress - 10);
+            var input = document.getElementById('player-progresso');
+            if (input) input.value = currentProgress;
+            updateTimeDisplay(currentProgress);
+          };
+
+          window.player_da_musica_avancar = function() {
+            currentProgress = Math.min(100, currentProgress + 10);
+            var input = document.getElementById('player-progresso');
+            if (input) input.value = currentProgress;
+            updateTimeDisplay(currentProgress);
+          };
+
+          window.player_da_musica_editar_titulo = function() {
+            var el = document.getElementById('player-titulo');
+            if (!el) return;
+            var isEditing = el.getAttribute('contenteditable') === 'true';
+            if (!isEditing) {
+              el.setAttribute('contenteditable', 'true');
+              el.classList.add('outline-2', 'outline-marca-300', 'rounded-lg', 'px-1');
+              el.focus();
+              var range = document.createRange();
+              range.selectNodeContents(el);
+              var sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(range);
+            } else {
+              el.setAttribute('contenteditable', 'false');
+              el.classList.remove('outline-2', 'outline-marca-300', 'rounded-lg', 'px-1');
+              if (el.textContent.trim() === '') el.textContent = 'Sol nas Montanhas';
+              toast('Título atualizado!', 'ok');
+            }
+          };
+
+          window.player_da_musica_trocar_capa = function() {
+            var capas = [
+              'from-marca-600 via-amber-500 to-orange-600',
+              'from-violet-600 via-purple-500 to-fuchsia-600',
+              'from-teal-600 via-emerald-500 to-green-600',
+              'from-blue-600 via-indigo-500 to-violet-600',
+              'from-rose-600 via-pink-500 to-red-600',
+              'from-amber-600 via-yellow-500 to-orange-600'
+            ];
+            var current = document.getElementById('player-capa');
+            if (!current) return;
+            var currentClass = current.className;
+            var currentGrad = capas.find(function(g) { return currentClass.indexOf(g) !== -1; });
+            var idx = capas.indexOf(currentGrad);
+            if (idx === -1) idx = 0;
+            var nextIdx = (idx + 1) % capas.length;
+            current.className = 'w-full h-full bg-gradient-to-br ' + capas[nextIdx] + ' flex items-center justify-center relative';
+            toast('Nova capa gerada pela IA!', 'ok');
+          };
+
+          window.player_da_musica_download = function(formato) {
+            toast('Preparando download em ' + formato.toUpperCase() + '...', 'info');
+            setTimeout(function() {
+              toast('Download iniciado! Arquivo ' + formato.toUpperCase() + ' salvo.', 'ok');
+            }, 1500);
+          };
+
+          window.player_da_musica_compartilhar = function(plataforma) {
+            var nomes = { whatsapp: 'WhatsApp', instagram: 'Instagram', stories: 'Instagram Stories' };
+            toast('Compartilhando no ' + (nomes[plataforma] || plataforma) + '...', 'info');
+            setTimeout(function() {
+              toast('Compartilhado com sucesso!', 'ok');
+            }, 1200);
+          };
+
+          window.player_da_musica_copiar_link = function() {
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText('https://musicai.app/m/sol-nas-montanhas').then(function() {
+                toast('Link copiado para a área de transferência!', 'ok');
+              });
+            } else {
+              toast('Link: musicai.app/m/sol-nas-montanhas', 'ok');
+            }
+          };
+
+          window.player_da_musica_curtir = function() {
+            liked = !liked;
+            var btnIcon = document.getElementById('player-icon-coracao');
+            var btnTexto = document.getElementById('player-texto-curtir');
+            var countEl = document.getElementById('player-curtidas-count');
+            if (liked) {
+              btnIcon.setAttribute('fill', 'currentColor');
+              btnIcon.classList.add('text-red-500');
+              btnIcon.classList.remove('text-gray-500');
+              btnTexto.textContent = 'Curtido';
+              btnTexto.classList.add('text-red-500');
+              if (countEl) countEl.textContent = '248';
+              toast('Você curtiu essa música!', 'ok');
+            } else {
+              btnIcon.setAttribute('fill', 'none');
+              btnIcon.classList.remove('text-red-500');
+              btnIcon.classList.add('text-gray-500');
+              btnTexto.textContent = 'Curtir';
+              btnTexto.classList.remove('text-red-500');
+              if (countEl) countEl.textContent = '247';
+            }
+          };
+
+          window.player_da_musica_abrir_comentarios = function() {
+            var html = '<div class="space-y-3 max-h-[60vh] overflow-y-auto">' +
+              '<div class="flex gap-2.5"><div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shrink-0"><span class="text-[11px] font-bold text-white">RL</span></div><div class="flex-1"><div class="flex items-center gap-2"><span class="text-sm font-semibold">Rafael Lima</span><span class="text-[10px] text-gray-400">há 2h</span></div><p class="text-xs text-gray-600 mt-0.5">Incrível! A voz ficou perfeita 👏🎶</p></div></div>' +
+              '<div class="flex gap-2.5"><div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-rose-600 flex items-center justify-center shrink-0"><span class="text-[11px] font-bold text-white">MC</span></div><div class="flex-1"><div class="flex items-center gap-2"><span class="text-sm font-semibold">Marina Costa</span><span class="text-[10px] text-gray-400">há 5h</span></div><p class="text-xs text-gray-600 mt-0.5">Uau, que qualidade! Vou usar para o vídeo do Instagram ✨</p></div></div>' +
+              '<div class="flex gap-2.5"><div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-600 flex items-center justify-center shrink-0"><span class="text-[11px] font-bold text-white">PT</span></div><div class="flex-1"><div class="flex items-center gap-2"><span class="text-sm font-semibold">Pedro Torres</span><span class="text-[10px] text-gray-400">há 1d</span></div><p class="text-xs text-gray-600 mt-0.5">Muito boa! O ritmo está perfeito 🔥</p></div></div>' +
+              '<div class="flex gap-2.5"><div class="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-yellow-600 flex items-center justify-center shrink-0"><span class="text-[11px] font-bold text-white">JS</span></div><div class="flex-1"><div class="flex items-center gap-2"><span class="text-sm font-semibold">Julia Santos</span><span class="text-[10px] text-gray-400">há 2d</span></div><p class="text-xs text-gray-600 mt-0.5">Achei o app por indicação e já gerei 3 músicas. Recomendo!</p></div></div>' +
+              '<div class="flex gap-2.5"><div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-sky-600 flex items-center justify-center shrink-0"><span class="text-[11px] font-bold text-white">LV</span></div><div class="flex-1"><div class="flex items-center gap-2"><span class="text-sm font-semibold">Lucas Vieira</span><span class="text-[10px] text-gray-400">há 3d</span></div><p class="text-xs text-gray-600 mt-0.5">A qualidade surpreendeu. Melhor que alguns apps pagos que já usei.</p></div></div>' +
+              '</div>' +
+              '<div class="mt-4 pt-3 border-t border-gray-100">' +
+              '<div class="flex gap-2"><input id="input-comentario" type="text" placeholder="Escreva um comentário..." class="flex-1 text-sm border border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:border-marca-400 transition-colors" onkeydown="if(event.key===\'Enter\') player_da_musica_enviar_comentario()">' +
+              '<button onclick="player_da_musica_enviar_comentario()" class="btn btn-primary text-sm py-2 px-4">Enviar</button></div></div>';
+            abrirModal(html, 'Comentários (18)');
+          };
+
+          window.player_da_musica_enviar_comentario = function() {
+            var input = document.getElementById('input-comentario');
+            if (!input || !input.value.trim()) { toast('Escreva algo antes de comentar.', 'erro'); return; }
+            toast('Comentário enviado!', 'ok');
+            setTimeout(function() { fecharModal(); }, 800);
+          };
+
+          initVisualizer();
+        })();
+      </script>
+    </section>
+
     <!-- TELAS -->
         </div>
 
