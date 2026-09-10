@@ -2154,6 +2154,358 @@
       </script>
     </section>
 
+    <section data-tela="planos-e-creditos" class="hidden">
+      <div class="min-h-screen pb-24">
+        <!-- Cabeçalho da tela -->
+        <div class="fade-in">
+          <div class="mb-6">
+            <h1 class="font-display text-2xl font-bold text-gray-900 mb-1">Planos e Créditos</h1>
+            <p class="text-sm text-gray-500">Escolha o plano ideal para criar suas músicas com IA</p>
+          </div>
+
+          <!-- Resumo do plano atual -->
+          <div class="card p-4 mb-6 border-l-4 border-marca-500 bg-gradient-to-r from-marca-50 to-white">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-xl bg-marca-100 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500 font-body">Plano atual</p>
+                  <p class="font-display font-bold text-gray-900 text-sm">Gratuito</p>
+                </div>
+              </div>
+              <span class="badge bg-marca-100 text-marca-700 text-xs px-2.5 py-1 rounded-full font-medium">Ativo</span>
+            </div>
+            <div class="flex items-baseline gap-1 mt-3">
+              <span class="font-display text-3xl font-bold text-marca-600">3</span>
+              <span class="text-sm text-gray-500">créditos restantes</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+              <div class="bg-marca-500 h-2 rounded-full transition-all duration-500" style="width: 30%"></div>
+            </div>
+            <p class="text-xs text-gray-400 mt-1.5">Renova em 12 de julho de 2025</p>
+          </div>
+        </div>
+
+        <!-- Cards de planos -->
+        <div class="space-y-4 mb-6 fade-in" style="animation-delay: 0.1s">
+          <!-- Plano Gratuito -->
+          <div id="plano-gratuito" class="card p-5 border-2 border-transparent hover:border-gray-200 transition-all duration-300 cursor-pointer" onclick="planos_e_creditos_selecionarPlano('gratuito')">
+            <div class="flex items-start justify-between mb-3">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-display font-bold text-lg text-gray-900">Gratuito</h3>
+                  <span class="badge bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full">Atual</span>
+                </div>
+                <p class="text-sm text-gray-500">Para começar a experimentar</p>
+              </div>
+              <div class="text-right">
+                <span class="font-display text-2xl font-bold text-gray-900">Grátis</span>
+                <p class="text-xs text-gray-400">/mês</p>
+              </div>
+            </div>
+            <div class="space-y-2 mb-4">
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600">3 créditos por mês</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600">Qualidade padrão (128kbps)</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600">Tempo de geração normal</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600">Suporte por e-mail</span>
+              </div>
+            </div>
+            <button onclick="event.stopPropagation(); planos_e_creditos_manterPlano('gratuito')" class="w-full py-2.5 rounded-xl border-2 border-gray-200 text-gray-600 font-display font-semibold text-sm hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 active:scale-95">
+              Plano Atual
+            </button>
+          </div>
+
+          <!-- Plano Essencial -->
+          <div id="plano-essencial" class="card p-5 border-2 border-transparent hover:border-marca-300 transition-all duration-300 cursor-pointer relative overflow-hidden" onclick="planos_e_creditos_selecionarPlano('essencial')">
+            <div class="absolute top-0 right-0 bg-marca-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl font-display">
+              Popular
+            </div>
+            <div class="flex items-start justify-between mb-3">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-display font-bold text-lg text-gray-900">Essencial</h3>
+                </div>
+                <p class="text-sm text-gray-500">Para criadores frequentes</p>
+              </div>
+              <div class="text-right">
+                <span class="font-display text-2xl font-bold text-marca-600">R$ 19,90</span>
+                <p class="text-xs text-gray-400">/mês</p>
+              </div>
+            </div>
+            <div class="space-y-2 mb-4">
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-marca-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">20 créditos por mês</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-marca-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Qualidade HD (320kbps)</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-marca-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Tempo de geração prioritário</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-marca-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Download em MP3 e WAV</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-marca-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Compartilhamento direto</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-marca-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Suporte prioritário</span>
+              </div>
+            </div>
+            <button onclick="event.stopPropagation(); planos_e_creditos_assinar('essencial')" class="w-full py-3 rounded-xl bg-marca-500 text-white font-display font-bold text-sm hover:bg-marca-600 transition-all duration-200 active:scale-95 shadow-lg shadow-marca-500/20">
+              Assinar Agora
+            </button>
+          </div>
+
+          <!-- Plano Premium -->
+          <div id="plano-premium" class="card p-5 border-2 border-transparent hover:border-amber-300 transition-all duration-300 cursor-pointer relative overflow-hidden bg-gradient-to-br from-amber-50/50 to-white" onclick="planos_e_creditos_selecionarPlano('premium')">
+            <div class="absolute top-0 right-0 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl font-display">
+              Recomendado
+            </div>
+            <div class="flex items-start justify-between mb-3">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-display font-bold text-lg text-gray-900">Premium</h3>
+                  <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+                <p class="text-sm text-gray-500">Para profissionais e equipes</p>
+              </div>
+              <div class="text-right">
+                <span class="font-display text-2xl font-bold text-amber-600">R$ 39,90</span>
+                <p class="text-xs text-gray-400">/mês</p>
+              </div>
+            </div>
+            <div class="space-y-2 mb-4">
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Créditos ilimitados</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Qualidade Ultra HD (FLAC)</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Geração instantânea</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Download em todos os formatos</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Sem marca d'água</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Direitos de uso comercial</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <svg class="w-4 h-4 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 font-medium">Suporte 24/7 com especialista</span>
+              </div>
+            </div>
+            <button onclick="event.stopPropagation(); planos_e_creditos_assinar('premium')" class="w-full py-3 rounded-xl bg-amber-500 text-white font-display font-bold text-sm hover:bg-amber-600 transition-all duration-200 active:scale-95 shadow-lg shadow-amber-500/20">
+              Assinar Premium
+            </button>
+          </div>
+        </div>
+
+        <!-- Selo de garantia -->
+        <div class="card p-4 mb-6 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 fade-in" style="animation-delay: 0.2s">
+          <div class="flex items-start gap-3">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-display font-bold text-gray-900 text-sm mb-1">Garantia de 7 dias</h4>
+              <p class="text-xs text-gray-600 leading-relaxed">Se não ficar satisfeito com o plano, devolvemos 100% do valor sem perguntas. Sem burocracia, sem taxa de cancelamento.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparativo rápido -->
+        <div class="card p-4 mb-6 fade-in" style="animation-delay: 0.3s">
+          <h3 class="font-display font-bold text-gray-900 text-sm mb-3">Compare os planos</h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+              <span class="text-xs text-gray-600">Créditos mensais</span>
+              <div class="flex items-center gap-4 text-xs">
+                <span class="text-gray-400 w-16 text-center">3</span>
+                <span class="text-marca-600 font-semibold w-16 text-center">20</span>
+                <span class="text-amber-600 font-semibold w-16 text-center">Ilimitado</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+              <span class="text-xs text-gray-600">Qualidade de áudio</span>
+              <div class="flex items-center gap-4 text-xs">
+                <span class="text-gray-400 w-16 text-center">Padrão</span>
+                <span class="text-marca-600 font-semibold w-16 text-center">HD</span>
+                <span class="text-amber-600 font-semibold w-16 text-center">Ultra HD</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+              <span class="text-xs text-gray-600">Tempo de geração</span>
+              <div class="flex items-center gap-4 text-xs">
+                <span class="text-gray-400 w-16 text-center">Normal</span>
+                <span class="text-marca-600 font-semibold w-16 text-center">Prioritário</span>
+                <span class="text-amber-600 font-semibold w-16 text-center">Instantâneo</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+              <span class="text-xs text-gray-600">Marca d'água</span>
+              <div class="flex items-center gap-4 text-xs">
+                <span class="text-gray-400 w-16 text-center">Sim</span>
+                <span class="text-marca-600 font-semibold w-16 text-center">Não</span>
+                <span class="text-amber-600 font-semibold w-16 text-center">Não</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between py-2">
+              <span class="text-xs text-gray-600">Direitos comerciais</span>
+              <div class="flex items-center gap-4 text-xs">
+                <span class="text-gray-400 w-16 text-center">—</span>
+                <span class="text-gray-400 w-16 text-center">—</span>
+                <span class="text-amber-600 font-semibold w-16 text-center">Sim</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Perguntas frequentes -->
+        <div class="space-y-2 mb-6 fade-in" style="animation-delay: 0.4s">
+          <h3 class="font-display font-bold text-gray-900 text-sm mb-3">Perguntas frequentes</h3>
+          <div class="card overflow-hidden">
+            <button onclick="planos_e_creditos_toggleFaq(this)" class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors duration-200">
+              <span class="text-sm font-medium text-gray-700">Posso mudar de plano a qualquer momento?</span>
+              <svg class="w-4 h-4 text-gray-400 transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-resposta hidden px-4 pb-4">
+              <p class="text-xs text-gray-600 leading-relaxed">Sim! Você pode fazer upgrade ou downgrade do seu plano a qualquer momento. As alterações entram em vigor imediatamente e os créditos são ajustados proporcionalmente.</p>
+            </div>
+          </div>
+          <div class="card overflow-hidden">
+            <button onclick="planos_e_creditos_toggleFaq(this)" class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors duration-200">
+              <span class="text-sm font-medium text-gray-700">O que é um crédito?</span>
+              <svg class="w-4 h-4 text-gray-400 transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-resposta hidden px-4 pb-4">
+              <p class="text-xs text-gray-600 leading-relaxed">Cada crédito permite gerar uma música completa com IA. Você pode escolher entre diferentes estilos, durações e com ou sem vocal. Créditos não utilizados expiram no final do mês.</p>
+            </div>
+          </div>
+          <div class="card overflow-hidden">
+            <button onclick="planos_e_creditos_toggleFaq(this)" class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors duration-200">
+              <span class="text-sm font-medium text-gray-700">Posso cancelar quando quiser?</span>
+              <svg class="w-4 h-4 text-gray-400 transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-resposta hidden px-4 pb-4">
+              <p class="text-xs text-gray-600 leading-relaxed">Claro! Você pode cancelar sua assinatura a qualquer momento pela área do usuário. O acesso continua até o final do período já pago, sem multas ou taxas adicionais.</p>
+            </div>
+          </div>
+          <div class="card overflow-hidden">
+            <button onclick="planos_e_creditos_toggleFaq(this)" class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors duration-200">
+              <span class="text-sm font-medium text-gray-700">Quais formas de pagamento são aceitas?</span>
+              <svg class="w-4 h-4 text-gray-400 transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-resposta hidden px-4 pb-4">
+              <p class="text-xs text-gray-600 leading-relaxed">Aceitamos cartões de crédito (Visa, Mastercard, Elo, American Express), PIX e boleto bancário. O pagamento é processado de forma segura pela nossa plataforma de pagamentos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Termos -->
+        <p class="text-xs text-gray-400 text-center px-4 leading-relaxed fade-in" style="animation-delay: 0.5s">
+          Ao assinar, você concorda com nossos <button onclick="mostrarTela('perfil-do-usuario')" class="text-marca-600 underline hover:text-marca-700">Termos de Uso</button> e <button onclick="mostrarTela('perfil-do-usuario')" class="text-marca-600 underline hover:text-marca-700">Política de Privacidade</button>. Renovação automática mensal.
+        </p>
+      </div>
+
+      <script>
+        function planos_e_creditos_selecionarPlano(plano) {
+          ['gratuito', 'essencial', 'premium'].forEach(p => {
+            const el = document.getElementById('plano-' + p);
+            if (!el) return;
+            el.classList.remove('border-marca-400', 'border-amber-400', 'shadow-lg', 'shadow-marca-500/10', 'shadow-amber-500/10');
+            el.classList.add('border-transparent');
+          });
+          const selecionado = document.getElementById('plano-' + plano);
+          if (!selecionado) return;
+          if (plano === 'essencial') {
+            selecionado.classList.remove('border-transparent');
+            selecionado.classList.add('border-marca-400', 'shadow-lg', 'shadow-marca-500/10');
+          } else if (plano === 'premium') {
+            selecionado.classList.remove('border-transparent');
+            selecionado.classList.add('border-amber-400', 'shadow-lg', 'shadow-amber-500/10');
+          } else {
+            selecionado.classList.remove('border-transparent');
+            selecionado.classList.add('border-gray-300');
+          }
+        }
+
+        function planos_e_creditos_assinar(plano) {
+          const nomes = { essencial: 'Essencial', premium: 'Premium' };
+          const valores = { essencial: 'R$ 19,90', premium: 'R$ 39,90' };
+          const html = '<div class="text-center py-4">' +
+            '<div class="w-16 h-16 rounded-full bg-marca-100 flex items-center justify-center mx-auto mb-4">' +
+            '<svg class="w-8 h-8 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>' +
+            '</div>' +
+            '<h3 class="font-display font-bold text-gray-900 mb-2">Confirmar assinatura</h3>' +
+            '<p class="text-sm text-gray-600 mb-1">Você está assinando o plano <strong>' + nomes[plano] + '</strong></p>' +
+            '<p class="text-lg font-bold text-marca-600 mb-4">' + valores[plano] + '/mês</p>' +
+            '<p class="text-xs text-gray-500 mb-6">Garantia de 7 dias · Cancele quando quiser</p>' +
+            '<div class="flex gap-2">' +
+            '<button onclick="fecharModal(); planos_e_creditos_processarAssinatura(\'' + plano + '\')" class="flex-1 py-3 rounded-xl bg-marca-500 text-white font-display font-bold text-sm hover:bg-marca-600 transition-all duration-200 active:scale-95">Confirmar</button>' +
+            '<button onclick="fecharModal()" class="flex-1 py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-display font-semibold text-sm hover:bg-gray-50 transition-all duration-200">Cancelar</button>' +
+            '</div></div>';
+          abrirModal(html, 'Confirmar Assinatura');
+        }
+
+        function planos_e_creditos_processarAssinatura(plano) {
+          fecharModal();
+          const nomes = { essencial: 'Essencial', premium: 'Premium' };
+          toast('Assinatura do plano ' + nomes[plano] + ' confirmada com sucesso!', 'ok');
+          setTimeout(() => {
+            mostrarTela('home-criar-musica');
+          }, 1500);
+        }
+
+        function planos_e_creditos_manterPlano(plano) {
+          if (plano === 'gratuito') {
+            toast('Você já está no plano Gratuito', 'info');
+          }
+        }
+
+        function planos_e_creditos_toggleFaq(botao) {
+          const resposta = botao.nextElementSibling;
+          const icone = botao.querySelector('.faq-icon');
+          if (!resposta || !icone) return;
+          resposta.classList.toggle('hidden');
+          if (resposta.classList.contains('hidden')) {
+            icone.style.transform = 'rotate(0deg)';
+          } else {
+            icone.style.transform = 'rotate(180deg)';
+          }
+        }
+      </script>
+    </section>
+
     <!-- TELAS -->
         </div>
 
