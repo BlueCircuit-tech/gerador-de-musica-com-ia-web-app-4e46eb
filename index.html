@@ -933,6 +933,278 @@
     </script>
 </section>
 
+    <section data-tela="configurar-geracao" class="hidden">
+      <div class="space-y-5">
+        <!-- Cabeçalho da tela -->
+        <div class="fade-in">
+          <button onclick="mostrarTela('home-criar-musica')" class="flex items-center gap-1.5 text-sm text-gray-400 hover:text-marca-300 transition-colors mb-3 active:scale-95">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Voltar e editar prompt
+          </button>
+          <h1 class="font-display text-2xl font-bold text-white">Configurar Geração</h1>
+          <p class="text-gray-400 text-sm mt-1">Escolha como sua música será criada</p>
+        </div>
+
+        <!-- Prompt resumo -->
+        <div class="card fade-in" style="animation-delay:0.05s">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-marca-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-4 h-4 text-marca-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            </div>
+            <div class="min-w-0">
+              <p class="text-xs text-gray-500 uppercase tracking-wider font-medium mb-1">Seu prompt</p>
+              <p class="text-sm text-gray-200 leading-relaxed">Uma música sobre um final de semana na praia com amigos, com clima leve e descontraído</p>
+            </div>
+          </div>
+          <button onclick="mostrarTela('home-criar-musica')" class="text-xs text-destaque hover:text-destaque/80 transition-colors mt-3 flex items-center gap-1 active:scale-95">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+            Editar prompt
+          </button>
+        </div>
+
+        <!-- Gênero Musical -->
+        <div class="fade-in" style="animation-delay:0.1s">
+          <label class="block text-xs text-gray-500 uppercase tracking-wider font-medium mb-2.5">Gênero Musical</label>
+          <div class="grid grid-cols-5 gap-2" id="grid-genero">
+            <button onclick="configurar_geracao_selecionar('genero','pop')" data-grupo="genero" data-valor="pop" class="configurar-card flex flex-col items-center gap-1.5 py-3 px-1.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <span class="text-xl">🎤</span><span class="text-[11px] font-medium text-gray-300">Pop</span>
+            </button>
+            <button onclick="configurar_geracao_selecionar('genero','rock')" data-grupo="genero" data-valor="rock" class="configurar-card flex flex-col items-center gap-1.5 py-3 px-1.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <span class="text-xl">🎸</span><span class="text-[11px] font-medium text-gray-300">Rock</span>
+            </button>
+            <button onclick="configurar_geracao_selecionar('genero','sertanejo')" data-grupo="genero" data-valor="sertanejo" class="configurar-card flex flex-col items-center gap-1.5 py-3 px-1.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <span class="text-xl">🤠</span><span class="text-[11px] font-medium text-gray-300">Sertanejo</span>
+            </button>
+            <button onclick="configurar_geracao_selecionar('genero','funk')" data-grupo="genero" data-valor="funk" class="configurar-card flex flex-col items-center gap-1.5 py-3 px-1.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <span class="text-xl">🪘</span><span class="text-[11px] font-medium text-gray-300">Funk</span>
+            </button>
+            <button onclick="configurar_geracao_selecionar('genero','eletronica')" data-grupo="genero" data-valor="eletronica" class="configurar-card flex flex-col items-center gap-1.5 py-3 px-1.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <span class="text-xl">🎧</span><span class="text-[11px] font-medium text-gray-300">Eletrônica</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tipo de Voz -->
+        <div class="fade-in" style="animation-delay:0.15s">
+          <label class="block text-xs text-gray-500 uppercase tracking-wider font-medium mb-2.5">Tipo de Voz</label>
+          <div class="grid grid-cols-3 gap-2.5" id="grid-voz">
+            <button onclick="configurar_geracao_selecionar('voz','masculina')" data-grupo="voz" data-valor="masculina" class="configurar-card flex flex-col items-center gap-2 py-3.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              <span class="text-xs font-medium text-gray-300">Masculina</span>
+            </button>
+            <button onclick="configurar_geracao_selecionar('voz','feminina')" data-grupo="voz" data-valor="feminina" class="configurar-card flex flex-col items-center gap-2 py-3.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              <span class="text-xs font-medium text-gray-300">Feminina</span>
+            </button>
+            <button onclick="configurar_geracao_selecionar('voz','infantil')" data-grupo="voz" data-valor="infantil" class="configurar-card flex flex-col items-center gap-2 py-3.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="text-xs font-medium text-gray-300">Infantil</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Duração -->
+        <div class="fade-in" style="animation-delay:0.2s">
+          <label class="block text-xs text-gray-500 uppercase tracking-wider font-medium mb-2.5">Duração</label>
+          <div class="grid grid-cols-3 gap-2.5" id="grid-duracao">
+            <button onclick="configurar_geracao_selecionar('duracao','30s')" data-grupo="duracao" data-valor="30s" class="configurar-card flex flex-col items-center gap-1 py-3.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <span class="text-base font-display font-bold text-gray-300">30s</span>
+              <span class="text-[10px] text-gray-500">1 crédito</span>
+            </button>
+            <button onclick="configurar_geracao_selecionar('duracao','1min')" data-grupo="duracao" data-valor="1min" class="configurar-card flex flex-col items-center gap-1 py-3.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <span class="text-base font-display font-bold text-gray-300">1 min</span>
+              <span class="text-[10px] text-gray-500">2 créditos</span>
+            </button>
+            <button onclick="configurar_geracao_selecionar('duracao','2min')" data-grupo="duracao" data-valor="2min" class="configurar-card flex flex-col items-center gap-1 py-3.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <span class="text-base font-display font-bold text-gray-300">2 min</span>
+              <span class="text-[10px] text-gray-500">3 créditos</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mood / Emoção -->
+        <div class="fade-in" style="animation-delay:0.25s">
+          <label class="block text-xs text-gray-500 uppercase tracking-wider font-medium mb-2.5">Mood</label>
+          <div class="grid grid-cols-3 gap-2.5" id="grid-mood">
+            <button onclick="configurar_geracao_selecionar('mood','animada')" data-grupo="mood" data-valor="animada" class="configurar-card flex flex-col items-center gap-2 py-3.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <span class="text-2xl">😄</span>
+              <span class="text-xs font-medium text-gray-300">Animada</span>
+            </button>
+            <button onclick="configurar_geracao_selecionar('mood','triste')" data-grupo="mood" data-valor="triste" class="configurar-card flex flex-col items-center gap-2 py-3.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <span class="text-2xl">😔</span>
+              <span class="text-xs font-medium text-gray-300">Triste</span>
+            </button>
+            <button onclick="configurar_geracao_selecionar('mood','epica')" data-grupo="mood" data-valor="epica" class="configurar-card flex flex-col items-center gap-2 py-3.5 rounded-xl border border-gray-700/60 bg-gray-800/40 hover:border-marca-400/50 hover:bg-marca-500/10 transition-all active:scale-95">
+              <span class="text-2xl">🔥</span>
+              <span class="text-xs font-medium text-gray-300">Épica</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Resumo da configuração + Créditos -->
+        <div class="card fade-in !bg-gradient-to-br !from-marca-900/40 !to-gray-800/40 border-marca-500/20" style="animation-delay:0.3s">
+          <p class="text-xs text-gray-500 uppercase tracking-wider font-medium mb-3">Resumo da configuração</p>
+          <div class="space-y-2.5">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-400">Gênero</span>
+              <span id="resumo-genero" class="text-sm text-gray-200 font-medium">—</span>
+            </div>
+            <div class="w-full h-px bg-gray-700/50"></div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-400">Voz</span>
+              <span id="resumo-voz" class="text-sm text-gray-200 font-medium">—</span>
+            </div>
+            <div class="w-full h-px bg-gray-700/50"></div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-400">Duração</span>
+              <span id="resumo-duracao" class="text-sm text-gray-200 font-medium">—</span>
+            </div>
+            <div class="w-full h-px bg-gray-700/50"></div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-400">Mood</span>
+              <span id="resumo-mood" class="text-sm text-gray-200 font-medium">—</span>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-4 border-t border-gray-700/50">
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-sm text-gray-400">Créditos necessários</p>
+                <p class="text-[11px] text-gray-500 mt-0.5">Você tem <span class="text-destaque font-medium" id="meus-creditos">12</span> créditos</p>
+              </div>
+              <div class="text-right">
+                <span id="creditos-total" class="text-2xl font-display font-bold text-destaque">0</span>
+                <span class="text-xs text-gray-500 ml-0.5">créditos</span>
+              </div>
+            </div>
+            <div class="mt-3 w-full bg-gray-700/40 rounded-full h-2 overflow-hidden">
+              <div id="creditos-barra" class="h-full bg-gradient-to-r from-marca-500 to-destaque rounded-full transition-all duration-500 ease-out" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botão Gerar -->
+        <button onclick="configurar_geracao_gerar()" id="btn-gerar" disabled class="w-full py-4 rounded-2xl font-display font-bold text-base tracking-wide transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed bg-gradient-to-r from-marca-500 to-marca-600 hover:from-marca-400 hover:to-marca-500 text-white shadow-lg shadow-marca-500/25 active:scale-[0.97] fade-in" style="animation-delay:0.35s">
+          <span class="flex items-center justify-center gap-2.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Gerar Música
+          </span>
+        </button>
+
+        <!-- Aviso -->
+        <p class="text-center text-[11px] text-gray-600 fade-in" style="animation-delay:0.4s">
+          A geração leva de 30s a 2min dependendo da duração escolhida
+        </p>
+      </div>
+
+      <script>
+      (function() {
+        'use strict';
+
+        const CUSTOS = { '30s': 1, '1min': 2, '2min': 3 };
+        const ROTULOS = {
+          genero: { pop:'Pop', rock:'Rock', sertanejo:'Sertanejo', funk:'Funk', eletronica:'Eletrônica' },
+          voz: { masculina:'Masculina', feminina:'Feminina', infantil:'Infantil' },
+          duracao: { '30s':'30 segundos', '1min':'1 minuto', '2min':'2 minutos' },
+          mood: { animada:'Animada', triste:'Triste', epica:'Épica' }
+        };
+        const SELECOES = { genero: null, voz: null, duracao: null, mood: null };
+        const CORES_SELECAO = {
+          genero: 'border-marca-400 bg-marca-500/20',
+          voz: 'border-destaque bg-destaque/10',
+          duracao: 'border-green-400 bg-green-500/10',
+          mood: 'border-pink-400 bg-pink-500/10'
+        };
+
+        function configurar_geracao_selecionar(grupo, valor) {
+          SELECOES[grupo] = valor;
+
+          document.querySelectorAll('[data-grupo="' + grupo + '"]').forEach(function(btn) {
+            btn.classList.remove('border-marca-400','bg-marca-500/20','border-destaque','bg-destaque/10','border-green-400','bg-green-500/10','border-pink-400','bg-pink-500/10');
+            btn.classList.add('border-gray-700/60','bg-gray-800/40');
+            if (btn.dataset.valor === valor) {
+              btn.classList.remove('border-gray-700/60','bg-gray-800/40');
+              btn.classList.add(...CORES_SELECAO[grupo].split(' '));
+            }
+          });
+
+          const resumoEl = document.getElementById('resumo-' + grupo);
+          if (resumoEl) {
+            resumoEl.textContent = ROTULOS[grupo][valor] || valor;
+            resumoEl.classList.add('text-destaque');
+            setTimeout(function() { resumoEl.classList.remove('text-destaque'); }, 600);
+          }
+
+          configurar_geracao_atualizarCreditos();
+        }
+
+        function configurar_geracao_atualizarCreditos() {
+          let total = 0;
+          if (SELECOES.duracao) total += CUSTOS[SELECOES.duracao] || 0;
+
+          const elTotal = document.getElementById('creditos-total');
+          const elBarra = document.getElementById('creditos-barra');
+          const btnGerar = document.getElementById('btn-gerar');
+          const meusCreditos = 12;
+
+          elTotal.textContent = total;
+
+          const pct = total > 0 ? Math.min((total / meusCreditos) * 100, 100) : 0;
+          elBarra.style.width = pct + '%';
+
+          const tudoSelecionado = SELECOES.genero && SELECOES.voz && SELECOES.duracao && SELECOES.mood;
+          const creditosSuficientes = total <= meusCreditos;
+
+          btnGerar.disabled = !(tudoSelecionado && creditosSuficientes);
+        }
+
+        function configurar_geracao_gerar() {
+          if (!SELECOES.genero || !SELECOES.voz || !SELECOES.duracao || !SELECOES.mood) {
+            toast('Selecione todas as opções antes de gerar', 'erro');
+            return;
+          }
+          const custo = CUSTOS[SELECOES.duracao] || 0;
+          const creditosAtuais = 12;
+
+          abrirModal(
+            '<div class="space-y-4">' +
+              '<div class="text-center">' +
+                '<div class="w-14 h-14 mx-auto rounded-full bg-marca-500/20 flex items-center justify-center mb-3">' +
+                  '<svg class="w-7 h-7 text-marca-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>' +
+                '</div>' +
+                '<p class="text-white font-display font-semibold text-lg">Confirmar geração?</p>' +
+                '<p class="text-gray-400 text-sm">Serão consumidos <span class="text-destaque font-bold">' + custo + ' crédito' + (custo > 1 ? 's' : '') + '</span> da sua conta.</p>' +
+                '<p class="text-gray-500 text-xs">Saldo atual: ' + creditosAtuais + ' créditos → <span class="text-gray-300">' + (creditosAtuais - custo) + ' após</span></p>' +
+              '</div>' +
+              '<div class="flex gap-3">' +
+                '<button onclick="fecharModal();configurar_geracao_confirmar(' + custo + ')" class="flex-1 btn text-center">Confirmar</button>' +
+                '<button onclick="fecharModal()" class="flex-1 btn !bg-gray-700 !text-gray-300 hover:!bg-gray-600 text-center">Cancelar</button>' +
+              '</div>' +
+            '</div>',
+            'Gerar Música'
+          );
+        }
+
+        function configurar_geracao_confirmar(custo) {
+          fecharModal();
+          toast('Geração iniciada! Consumindo ' + custo + ' crédito' + (custo > 1 ? 's' : '') + '.', 'ok');
+          setTimeout(function() {
+            mostrarTela('processando-musica');
+          }, 800);
+        }
+
+        // Pré-selecionar padrões para o demo
+        setTimeout(function() {
+          configurar_geracao_selecionar('genero', 'pop');
+          configurar_geracao_selecionar('voz', 'feminina');
+          configurar_geracao_selecionar('duracao', '1min');
+          configurar_geracao_selecionar('mood', 'animada');
+        }, 300);
+
+      })();
+      </script>
+    </section>
+
     <!-- TELAS -->
         </div>
 
